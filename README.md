@@ -20,10 +20,15 @@ Including an example of how to use your role (for instance, with variables passe
 
 execution Information
 ------------------
-ansible-playbook -i env main.yaml
+Enter configuraed remote server host or ip in env inventory file
 
-manual steps
-*************
+
+      ansible-playbook -i env main.yaml
+
+
+Manual Steps
+----------------
+
 install Apache2
 ***************
 
