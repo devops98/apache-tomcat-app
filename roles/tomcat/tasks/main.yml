@@ -52,7 +52,17 @@
   template:
     src: "{{ service_tomcat2 }}"
     dest: "{{ service_path }}"
-
+    
+- name: configure tomcat1    
+  shell: update-rc.d tomcat1 defaults
+  args:
+    chdir: "{{ service_path }}"
+  
+- name: configure tomcat1    
+  shell: update-rc.d tomcat2 defaults
+  args:
+    chdir: "{{ service_path }}"
+  
 - name: copy tomcat2 server.xml file
   template:
     src: server.xml

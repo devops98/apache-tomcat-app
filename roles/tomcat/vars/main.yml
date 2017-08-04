@@ -9,11 +9,11 @@ service_path: /etc/init.d/
 tomcat1_path: /usr/share/tomcat1
 tomcat1_lib: /usr/share/tomcat1/lib/mysql-connector-java-5.1.43-bin.jar
 tomcat1_webapps: /usr/share/tomcat1/webapps/petstore
-service_tomcat1: tomcat1.sh
+service_tomcat1: tomcat1
 
 
 # vars file for tomcat2
 tomcat1_path: /usr/share/tomcat2
 tomcat2_lib: /usr/share/tomcat2/lib/mysql-connector-java-5.1.43-bin.jar
 tomcat2_webapps: /usr/share/tomcat2/webapps/petstore
-service_tomcat2: tomcat2.sh
+service_tomcat2: tomcat2
