@@ -29,8 +29,8 @@
 
 - name: copy mysql jar file server one
   copy:
-    src: petstore.ear
-    dest: /usr/share/tomcat1/webapps/petstore.ear
+    src: petstore
+    dest: /usr/share/tomcat1/webapps/petstore
     owner: root
     group: root
     mode: 0777
