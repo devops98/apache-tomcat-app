@@ -1,0 +1,11 @@
+# ansible playbook for a task.
+#
+# @author CHENNAIAH BIRRU (2017).
+
+- hosts: all
+  gather_facts: yes
+
+  roles:
+    - mysql
+    - tomcat
+    - apache

@@ -1,0 +1,69 @@
+---
+# tasks file for tomcati
+
+- name: untar tomcat server one
+  unarchive:
+    src: apache-tomcat-7.0.79.tar.gz
+    dest: /usr/share/tomcat1
+
+- name: untar tomcat server two
+  unarchive:
+    src: apache-tomcat-7.0.79.tar.gz
+    dest: /usr/share/tomcat2
+
+- name: copy mysql jar file
+  copy:
+    src: mysql-connector-java-5.1.43-bin.jar
+    dest: /usr/share/tomcat2/lib/mysql-connector-java-5.1.43-bin.jar
+    owner: root
+    group: root
+    mode: 0644
+
+- name: copy mysql jar file server one
+  copy:
+    src: mysql-connector-java-5.1.43-bin.jar
+    dest: /usr/share/tomcat2/lib/mysql-connector-java-5.1.43-bin.jar
+    owner: root
+    group: root
+    mode: 0644
+
+- name: copy mysql jar file server one
+  copy:
+    src: petstore.ear
+    dest: /usr/share/tomcat1/webapps/petstore.ear
+    owner: root
+    group: root
+    mode: 0777
+
+- name: copy petstore ear file server two
+  copy:
+    src: petstore.ear
+    dest: /usr/share/tomcat2/webapps/petstore.ear
+    owner: root
+    group: root
+    mode: 0777
+
+- name: copy tomcat1 service
+  template: 
+    src: tomcat1.sh
+    dest: /etc/init.d/
+
+- name: copy tomcat2 service
+  template:
+    src: tomcat2.sh
+    dest: /etc/init.d/
+
+- name: copy tomcat2 server.xml file
+  template:
+    src: server.xml
+    dest: /usr/share/tomcat2/conf/
+
+- name: start service tomcat1
+  service:
+    name: tomcat1
+    state: started
+
+- name: start service tomcat2
+  service:
+    name: tomcat2
+    state: started

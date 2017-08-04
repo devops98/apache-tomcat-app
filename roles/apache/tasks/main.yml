@@ -1,0 +1,37 @@
+---
+# tasks file for apache
+
+- name: install apache2 
+  apt:
+    name: apache2
+    state: present
+
+- name: install libapache2-mod-jk
+  apt:
+    name: libapache2-mod-jk
+    state: present
+
+- name: install openjdk-7-jdk
+  apt:
+    name: openjdk-7-jdk
+    state: present
+
+- name: set environment path 
+  shell: "echo JAVA_HOME is $JAVA_HOME"
+  environment:
+    JAVA_HOME: /usr/lib/jvm/java-7-openjdk-amd64
+
+- name: copy template worker properties file
+  template: 
+    src: workers.properties
+    dest: /etc/libapache2-mod-jk/
+
+- name: copy template default.conf file
+  template: 
+    src: 000-default.conf 
+    dest: /etc/apache2/sites-enabled/
+    
+- name: restart service in ansible 
+  service:
+    name: apache2
+    state: restarted
