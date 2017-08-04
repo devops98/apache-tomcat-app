@@ -1,2 +1,9 @@
 ---
 # vars file for apache
+apache: apache2
+apachejk: libapache2-mod-jk
+
+
+# vars file for java
+java: openjdk-7-jdk
+javapath: /usr/lib/jvm/java-7-openjdk-amd64

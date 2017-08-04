@@ -1,2 +1,19 @@
 ---
-# vars file for tomcat
+# vars file for tomcat common
+mysqljar: mysql-connector-java-5.1.43-bin.jar
+tomcat_tar: apache-tomcat-7.0.79.tar.gz
+petstore_deploy: petstore
+service_path: /etc/init.d/
+
+# vars file for tomcat2
+tomcat1_path: /usr/share/tomcat1
+tomcat1_lib: /usr/share/tomcat1/lib/mysql-connector-java-5.1.43-bin.jar
+tomcat1_webapps: /usr/share/tomcat1/webapps/petstore
+service_tomcat1: tomcat1.sh
+
+
+# vars file for tomcat2
+tomcat1_path: /usr/share/tomcat2
+tomcat2_lib: /usr/share/tomcat2/lib/mysql-connector-java-5.1.43-bin.jar
+tomcat2_webapps: /usr/share/tomcat2/webapps/petstore
+service_tomcat2: tomcat2.sh

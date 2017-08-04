@@ -3,55 +3,55 @@
 
 - name: untar tomcat server one
   unarchive:
-    src: apache-tomcat-7.0.79.tar.gz
-    dest: /usr/share/tomcat1
+    src: "{{ tomcat_tar }}"
+    dest: "{{ tomcat1_path }}"
 
 - name: untar tomcat server two
   unarchive:
-    src: apache-tomcat-7.0.79.tar.gz
-    dest: /usr/share/tomcat2
+    src: "{{ tomcat_tar }}"
+    dest: "{{ tomcat2_path }}"
 
 - name: copy mysql jar file
   copy:
-    src: mysql-connector-java-5.1.43-bin.jar
-    dest: /usr/share/tomcat2/lib/mysql-connector-java-5.1.43-bin.jar
+    src: "{{ mysqljar }}"
+    dest: "{{ tomcat1_lib }}"
     owner: root
     group: root
     mode: 0644
 
 - name: copy mysql jar file server one
   copy:
-    src: mysql-connector-java-5.1.43-bin.jar
-    dest: /usr/share/tomcat2/lib/mysql-connector-java-5.1.43-bin.jar
+    src: "{{ mysqljar }}"
+    dest: "{{ tomcat2_lib }}"
     owner: root
     group: root
     mode: 0644
 
 - name: copy mysql jar file server one
   copy:
-    src: petstore
-    dest: /usr/share/tomcat1/webapps/petstore
+    src: "{{ petstore_deploy }}"
+    dest: "{{ tomcat1_webapps }}"
     owner: root
     group: root
     mode: 0777
 
 - name: copy petstore ear file server two
   copy:
-    src: petstore.ear
-    dest: /usr/share/tomcat2/webapps/petstore.ear
+    src: "{{ petstore_deploy }}"
+    dest: "{{ tomcat2_webapps }}"
     owner: root
     group: root
     mode: 0777
 
 - name: copy tomcat1 service
   template: 
-    src: tomcat1.sh
-    dest: /etc/init.d/
+    src: "{{ service_tomcat1 }}"
+    dest: "{{ service_path }}"
 
 - name: copy tomcat2 service
   template:
-    src: tomcat2.sh
-    dest: /etc/init.d/
+    src: "{{ service_tomcat2 }}"
+    dest: "{{ service_path }}"
 
 - name: copy tomcat2 server.xml file
   template:
@@ -60,10 +60,10 @@
 
 - name: start service tomcat1
   service:
-    name: tomcat1
+    name: "{{ service_tomcat1 }}"
     state: started
 
 - name: start service tomcat2
   service:
-    name: tomcat2
+    name: "{{ service_tomcat2 }}"
     state: started

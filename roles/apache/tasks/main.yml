@@ -3,23 +3,23 @@
 
 - name: install apache2 
   apt:
-    name: apache2
+    name: "{{ apache }}"
     state: present
 
 - name: install libapache2-mod-jk
   apt:
-    name: libapache2-mod-jk
+    name: "{{ apachejk }}"
     state: present
 
 - name: install openjdk-7-jdk
   apt:
-    name: openjdk-7-jdk
+    name: "{{ java }}"
     state: present
 
 - name: set environment path 
   shell: "echo JAVA_HOME is $JAVA_HOME"
   environment:
-    JAVA_HOME: /usr/lib/jvm/java-7-openjdk-amd64
+    JAVA_HOME: "{{ javapath }}"
 
 - name: copy template worker properties file
   template: 
@@ -33,5 +33,5 @@
     
 - name: restart service in ansible 
   service:
-    name: apache2
+    name: "{{ javaapath }}"
     state: restarted

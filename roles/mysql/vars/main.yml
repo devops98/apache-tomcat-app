@@ -1,2 +1,4 @@
 ---
 # vars file for mysql
+mysql_pack: mysql-server-5.6
+mysql_db: javatestdb
